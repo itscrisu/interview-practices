@@ -1,6 +1,6 @@
 /**
  * All of these examples come from this post on freeCodeCamp: https://www.freecodecamp.org/news/the-top-data-structures-you-should-know-for-your-next-coding-interview-36af0831f5e3/
- * This are my solutions for them, and I'm trying to explain line by line my thought process 
+ * These are my solutions for them, and I'm trying to explain line by line my thought process 
  */
 
 // Find the second minimum element of an array
@@ -44,3 +44,42 @@ function findSecondMinimum (array: number[]): number {
 
   return secondMin;
 }
+
+// --------------
+// --------------
+// --------------
+
+// First non-repeating integers in an array
+
+/**
+ * Which numbers appear more than one time? 
+ * I'll start counting how many times each number appears on the array
+ * Then, in the original order, I will look for the first one that appears only once. 
+ */
+
+function firstNonRepeatingInteger(array: number[]): number {
+//  I look for each number of my array of numbers:
+  for (let i = 0; i < array.length; i++) {
+    let isRepeated = false;
+
+    // For each number, we check if it is repeated anywhere else
+    for (let j = 0; j < array.length; j++) {
+      // If I find the same number on a different position
+      if(i !== j && array[i] === array[j]) {
+        // If I find that it is repeated, I mark isRepeated = true and exit the inner loop
+        isRepeated = true;
+        break;
+      }
+    }
+
+    // After verifying a complete number, if it is not repeated, we return it immediately.
+    if (!isRepeated) {
+      return array[i] // This will be the first non-repeated number
+    }
+  }
+
+  // Error handling: If there are no non-repeated integers
+  throw new Error("There are no non-repeated integers on this array, sorry.")
+
+  // Thinking about this solution I can probably make it better instead of going for a 0(n2) complexity here, but I think this way is more intuitive and better explained like this. I mean for sure each solution can be better I think lol. 
+ }
