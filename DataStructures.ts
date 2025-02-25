@@ -136,5 +136,6 @@ function mergeSortedArrays(array1: number[], array2: number[]): number[] {
 
   /**
    * It is O(n + m) where n is the size of the first array and m is the size of the second, because each element of both arrays is processed exactly once.
+   * Now that I think about it, what if the two arrays weren't sorted? Well, I think I will sort them first, and then merge them. It may sound like a waste of time, but I believe it is the most efficient way to do it.
    */
 }
