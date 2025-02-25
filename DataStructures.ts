@@ -139,3 +139,52 @@ function mergeSortedArrays(array1: number[], array2: number[]): number[] {
    * Now that I think about it, what if the two arrays weren't sorted? Well, I think I will sort them first, and then merge them. It may sound like a waste of time, but I believe it is the most efficient way to do it.
    */
 }
+
+// --------------
+// --------------
+// --------------
+
+// Rearrange positive and negative values in an array
+
+/**
+ * I want to put all the negatives on the left and all the positives on the right.
+ * I will use two pointers: one from the beginning and one from the end.
+ * If I find a positive at the beginning and a negative at the end, I swap them.
+ * If not, I move on accordingly.
+ */
+
+function rearrangePositivesAndNegatives(array: number[]): number[] {
+  // Left pointer starts at the beginning
+  let left = 0;
+  // Right pointer starts at the end
+  let right = array.length - 1;
+
+  // While the pointers don't meet
+  while (left < right) {
+    // If the left element is already negative, that's ok 
+    // I just advance the left pointer
+    if (array[left] < 0) {
+      left++;
+    }
+    // If the right element is already positive, that's ok
+    // I just move the right pointer
+    else if (array[right] >= 0) {
+      right--;
+    }
+    // If I have a positive on the left and a negative on the right 
+    // I swap them
+    else {
+      const temp = array[left];
+      array[left] = array[right];
+      array[right] = temp;
+      // I advance on both pointers
+      left++;
+      right--;
+    }
+  }
+  return array;
+
+  /**
+   * This one is O(n) because I go through the array once, and I only swap elements when necessary.
+   */
+}
