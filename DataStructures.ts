@@ -83,3 +83,58 @@ function firstNonRepeatingInteger(array: number[]): number {
 
   // Thinking about this solution I can probably make it better instead of going for a 0(n2) complexity here, but I think this way is more intuitive and better explained like this. I mean for sure each solution can be better I think lol. 
  }
+
+// --------------
+// --------------
+// --------------
+
+// Merge two sorted arrays
+
+/**
+ * I have two arrangements already sorted and I want to combine them into one, also sorted.
+ * I will compare the first element of each array and take the smallest one.
+ * Then I will move forward to the arrangement from which I took the element and repeat.
+ * When I'm done with one array, I'll add all the remaining elements from the other.
+ */
+
+function mergeSortedArrays(array1: number[], array2: number[]): number[] {
+  // I will create a new array to store the merged array
+  const mergedArray: number[] = [];
+
+  // I will create two pointers to keep track of the current position of each array
+  let i = 0;
+  let j = 0;
+
+  // While there are elements in both arrays
+  while (i < array1.length && j < array2.length) {
+    // If the element of the first array is smaller
+    if (array1[i] < array2[j]) {
+      // I add it to the merged array
+      mergedArray.push(array1[i]);
+      // And move the pointer to the next element
+      i++;
+    } else {
+      // If the element of the second array is smaller
+      mergedArray.push(array2[j]);
+      j++;
+    }
+  }
+
+  // When I finish one of the arrays, I add the remaining elements of the other
+  while (i < array1.length) {
+    mergedArray.push(array1[i]);
+    i++;
+  }
+
+  while (j < array2.length) {
+    mergedArray.push(array2[j]);
+    j++;
+  }
+
+  return mergedArray;
+
+
+  /**
+   * It is O(n + m) where n is the size of the first array and m is the size of the second, because each element of both arrays is processed exactly once.
+   */
+}
